@@ -1,0 +1,107 @@
+Public Class Form1
+    Public b, l, txtsay, txttvnzuu, txthrzuu, txtzuu, txttavi, txthrntav, txtarav, txttav, txthoyr, txtmynga
+    Public B1, B2, B3, L1, L2, L3, bb, ba As Double
+    Public aascii As Char
+    ' Public lon1, lon2 As String
+    Public Function Lat(ByVal latitude As Double) As String
+        Select Case latitude
+            Case 40 To 43
+                Return "K"
+            Case 44 To 47
+                Return "L"
+            Case 48 To 51
+                Return "M"
+            Case 52 To 55
+                Return "N"
+            Case Else
+                Return Nothing
+        End Select
+    End Function
+    Public Function Lon1(ByVal longtitude As Double)
+        Select Case longtitude
+            Case 87 To 89
+                Return "-45"
+            Case 90 To 95
+                Return "-46"
+            Case 96 To 101
+                Return "-47"
+            Case 102 To 107
+                Return "-48"
+            Case 108 To 113
+                Return "-49"
+            Case 114 To 120
+                Return "-50"
+            Case Else
+                Return Nothing
+        End Select
+    End Function
+    Public Function Lon2(ByVal longtitude As Double, ByVal latitude As Double) As String
+        Dim count As Double = 0
+        For i As Integer = 0 To 90 Step 4
+            If 90 - i > longtitude Then
+                Dim b As String = Asc(count + 65)
+            End If
+            count = +i
+        Next
+        Select Case longtitude
+            Case 87 To 89
+                Return "-45"
+            Case 90 To 95
+                Return "-46"
+            Case 96 To 101
+                Return "-47"
+            Case 102 To 107
+                Return "-48"
+            Case 108 To 113
+                Return "-49"
+            Case 114 To 120
+                Return "-50"
+            Case Else
+                Return Nothing
+        End Select
+    End Function
+
+    Private Sub btn_C_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_C.Click
+        Dim count As Double = 0
+        Dim count1 As Double
+        If 39 < B1txt.Text < 53 Then
+            For i As Integer = 39 To 92 Step 4
+                If i >= B1txt.Text Then
+                    aascii = Chr(count + 74).ToString
+                    'hrzuu.Text = aascii
+                    For j As Integer = 83 To 120 Step 6
+                        If j >= L1txt.Text Then
+                            hrzuu.Text = aascii & "-" & 44 + count1
+                            Exit For
+
+                        End If
+                        count1 = count1 + 1
+                    Next
+                    Exit For
+                End If
+                count = count + 1
+            Next
+        Else
+            hrzuu.Text = "Хилийн гадна утга оруулсан байна."
+        End If
+        tvnzuu.Text = say.Text
+        ' hrzuu.Text = tvnzuu.Text
+        zuu.Text = tvnzuu.Text
+        tavi.Text = zuu.Text
+        hrntv.Text = tavi.Text
+        arav.Text = hrntv.Text
+        tav.Text = arav.Text
+        hoyr.Text = tav.Text
+        mynga.Text = hoyr.Text
+    End Sub
+
+    Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
+        For ii As Integer = Asc(aascii) - 2 To Asc(aascii) + 2 Step 2
+            If ii >= L2txt.Text Then
+                hrzuu.Text = aascii & "-" & 44 + count1
+                Exit For
+
+            End If
+        Next
+    End Sub
+End Class
